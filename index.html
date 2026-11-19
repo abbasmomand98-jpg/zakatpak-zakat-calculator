@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZakatPak — Zakat Calculator &amp; Verified Charity Finder (UX Concept)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><span class="logo">Z</span> ZakatPak</div>
+  <p class="tagline">Pay the right Zakat. To the right hands. — Zakat calculator &amp; verified charity finder for Pakistan</p>
+  <p class="sample-note">SAMPLE DATA — every figure, person, charity, rate and receipt shown here is invented for this UX concept demo. These are NOT real people, real charities or real payments. Gold and silver rates are SAMPLE rates — always check today's market rate before you act on them. Zakat rules are shown in simplified form; for a real ruling, ask a qualified scholar.</p>
+</header>
+
+<nav class="tabs" aria-label="ZakatPak sections">
+  <button id="tab-calculator" class="tab-btn active" data-tab="calculator">Zakat Calculator</button>
+  <button id="tab-nisab" class="tab-btn" data-tab="nisab">Nisab Checker</button>
+  <button id="tab-charity" class="tab-btn" data-tab="charity">Charity Verifier</button>
+  <button id="tab-tracker" class="tab-btn" data-tab="tracker">Payment Tracker</button>
+  <button id="tab-guide" class="tab-btn" data-tab="guide">Who Qualifies</button>
+  <button id="tab-spotter" class="tab-btn" data-tab="spotter">Red-Flag Spotter</button>
+</nav>
+
+<main>
+  <!-- Zakat calculator -->
+  <section class="card" id="section-calculator">
+    <p class="eyebrow">ZAKAT CALCULATOR — 2.5% OF ZAKATABLE WEALTH</p>
+    <h2>Pay the right Zakat. To the right hands.</h2>
+    <p class="hint">Millions of Pakistani Muslims owe Zakat — 2.5% of zakatable wealth held above nisab for one lunar year — but most never work it out. Ahmed Raza, 38, Lahore, an accounts officer, has never worked out his Zakat: he guesses, and hands cash to whoever knocks at the door in the winter charity drives. ZakatPak works it out in seconds, and shows the maths line by line.</p>
+    <div class="verify-row">
+      <label>Cash in hand (Rs)
+        <input id="cash-input" type="number" value="850000" min="0" step="1000">
+      </label>
+      <label>Bank savings (Rs)
+        <input id="bank-input" type="number" value="1200000" min="0" step="1000">
+      </label>
+      <label>Gold (grams)
+        <input id="gold-input" type="number" value="25" min="0" step="1">
+      </label>
+      <label>Silver (grams)
+        <input id="silver-input" type="number" value="0" min="0" step="1">
+      </label>
+      <label>Business stock (Rs)
+        <input id="stock-input" type="number" value="0" min="0" step="1000">
+      </label>
+      <label>Debts you owe (Rs)
+        <input id="debts-input" type="number" value="150000" min="0" step="1000">
+      </label>
+      <button id="calc-btn">Calculate my Zakat</button>
+    </div>
+    <div id="calc-result"></div>
+    <h3>Worked example — check the maths</h3>
+    <div id="examples-list"></div>
+    <h3>Where your Zakat comes from</h3>
+    <div id="asset-list"></div>
+    <p id="calc-summary"></p>
+  </section>
+
+  <!-- Nisab checker -->
+  <section class="card" id="section-nisab" style="display:none">
+    <p class="eyebrow">NISAB CHECKER — GOLD 87.48 G · SILVER 612.36 G</p>
+    <h2>Do you owe Zakat? Check the nisab.</h2>
+    <p class="hint">Zakat is due only above nisab — 87.48 grams of gold or 612.36 grams of silver, held for a full lunar year. At the sample rates, gold nisab is Rs 3,411,720 and silver nisab is Rs 241,504. Ahmed Raza's wealth is below the gold nisab but 11.9x the silver nisab — so Zakat is due. ZakatPak uses the silver nisab, the lower, more cautious threshold most Pakistani scholars apply.</p>
+    <div id="nisab-box"></div>
+    <h3>Your wealth against the silver nisab</h3>
+    <div id="nisab-compare"></div>
+    <p class="hint">Sample rates: gold Rs 39,000 a gram, silver Rs 4,600 a tola (Rs 394.38 a gram). Check today's market rate before you act.</p>
+  </section>
+
+  <!-- Charity verifier -->
+  <section class="card" id="section-charity" style="display:none">
+    <p class="eyebrow">CHARITY VERIFIER — SAMPLE CHARITIES</p>
+    <h2>Verified hands, not strangers.</h2>
+    <p class="hint">Every charity on ZakatPak shows its registration number and published accounts — or it does not get listed. Search a name to see its verdict, or browse the sample list. Noor Welfare Trust (sample) is verified: registered, audited, receipt for every payment. Quick Zakat Collectors (sample) is flagged: WhatsApp only, no registration, cash only, no receipt.</p>
+    <div class="verify-row">
+      <label>Charity name
+        <input id="charity-input" type="text" placeholder="Try Noor or Quick">
+      </label>
+      <button id="charity-btn">Verify this charity</button>
+    </div>
+    <div id="charity-result"></div>
+    <h3>Sample charities</h3>
+    <div id="charity-list"></div>
+  </section>
+
+  <!-- Payment tracker -->
+  <section class="card" id="section-tracker" style="display:none">
+    <p class="eyebrow">PAYMENT TRACKER — RECEIPTS SAVED ON THIS DEVICE</p>
+    <h2>Every rupee, receipted.</h2>
+    <p class="hint">Ahmed Raza's Zakat this year is Rs 71,875. He has paid Rs 50,000 of it — 70% — in two receipted payments, and Rs 21,875 is still to pay. Add a payment below and ZakatPak issues the next receipt number (ZKT-2026-0003) and saves it on this device.</p>
+    <p id="tracker-progress"></p>
+    <div id="receipt-list"></div>
+    <h3>Record a payment</h3>
+    <div class="verify-row">
+      <label>Charity
+        <input id="pay-charity" type="text" value="Noor Welfare Trust" placeholder="Charity name">
+      </label>
+      <label>Amount (Rs)
+        <input id="pay-amount" type="number" value="21875" min="0" step="100">
+      </label>
+      <label>Mustahiq group
+        <select id="pay-group">
+          <option>The poor (fuqara)</option>
+          <option>The needy (masakin)</option>
+          <option>Those in debt (gharimeen)</option>
+          <option>The stranded traveller (ibn-us-sabil)</option>
+        </select>
+      </label>
+      <button id="pay-btn">Record payment</button>
+    </div>
+    <div id="pay-result"></div>
+  </section>
+
+  <!-- Mustahiqeen guide -->
+  <section class="card" id="section-guide" style="display:none">
+    <p class="eyebrow">MUSTAHIQEEN — WHO QUALIFIES FOR ZAKAT</p>
+    <h2>Who can receive your Zakat?</h2>
+    <p class="hint">Zakat may only go to eight groups, named in the Quran (9:60). Every payment in ZakatPak names the group it reaches — so the Zakat is valid, and you can prove where it went.</p>
+    <div id="guide-list"></div>
+  </section>
+
+  <!-- Red-flag spotter quiz -->
+  <section class="card" id="section-spotter" style="display:none">
+    <p class="eyebrow">RED-FLAG SPOTTER</p>
+    <h2>Spot the fake collector.</h2>
+    <p class="hint">Four things a collector does that should stop you paying — and one safe habit. A collector asking for cash with no receipt; a "charity" with no registration number and no office, WhatsApp only; a promise that your Zakat will reach orphans abroad with no named partner and no accounts; and pressure — "pay now, the truck leaves tonight". Call each one a red flag or safe, then check your score.</p>
+    <div id="spotter-quiz"></div>
+    <button id="spotter-btn">Check my score</button>
+    <div id="spotter-result"></div>
+  </section>
+
+  <button id="reset-demo" class="secondary">Reset demo data</button>
+</main>
+
+<footer>
+  <p>ZakatPak is an unofficial UX concept by Muhammad Abbas Khan — not a religious authority. All figures, people, charities and receipts are sample data. Check today's gold &amp; silver rates, and ask a qualified scholar for a real ruling.</p>
+  <p>Available for new projects: abbasmomand98@gmail.com</p>
+</footer>
+
+<script src="data.js"></script>
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
